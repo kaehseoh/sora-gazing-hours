@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sora Gazing Hours</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Reddit+Sans:ital,wght@0,400;0,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+     <!-- Yall, im messy wit this, dont judge lol - kay -->
+</head>
+<body>
+    <div class="sky">
+       
+        <div class="grain-wrap">
+            <video autoplay loop muted playsinline class="grain-video">
+                <source src="grain-overlay.mp4" type="video/mp4">
+            </video>
+        </div>
+        <img src="cloud 1.png" class="cloud cloud1" />
+        <img src="cloud 2.png" class="cloud cloud2" />
+        <img src="cloud 1.png" class="cloud cloud3" />
+        <img src="cloud 2.png" class="cloud cloud4" />
+        <img src="cloud 1.png" class="cloud cloud5" />
+        <img src="cloud 2.png" class="cloud cloud6" />
+    </div>
+    
+    <title>SoraAmp</title>
+    <link rel="stylesheet" href="style.css" />
+    <div class="credits">click the gif :D </span></div>
+    <div class="cool-person">made by kaehseoh with some animation help from Rivers (riveriz) </div>
+    <div class="track-title">Sparks - Soundbound</div>
+
+  </head>
+  <body>
+    <div class="player">
+      <img src="music player/Previous Button.png" alt="Previous" class="btn prev-btn">
+      <img src="music player/Play button.png" alt="Play" class="btn play-btn">
+      <img src="music player/Pause button.png" alt="Pause" class="btn pause-btn">
+      <img src="music player/Next Button.png" alt="Next" class="btn next-btn">
+      
+
+    </div>
+    <audio id="audio-player" src="sparks.mp3"></audio>
+    <script>
+     const audio = document.getElementById('audio-player');
+const playButton = document.querySelector('.play-btn');
+const pauseButton = document.querySelector('.pause-btn');
+const prevButton = document.querySelector('.prev-btn'); 
+
+playButton.addEventListener('click', () => {
+  audio.play();
+});
+
+pauseButton.addEventListener('click', () => {
+  audio.pause();
+});
+
+prevButton.addEventListener('click', () => {
+  audio.currentTime = 0; 
+  audio.play();
+});
+    </script>
+  </div>
+  <div class="gif-container" onclick="cycleGif()">
+    <img src="GIFS/cat 1.gif" alt="Cat 1" class="cat-gif active">
+    <img src="GIFS/cat 2.gif" alt="Cat 2" class="cat-gif">
+    <img src="GIFS/cat 3.gif" alt="Cat 3" class="cat-gif">
+    <img src="GIFS/cat 4.gif" alt="Cat 4" class="cat-gif">
+    <img src="GIFS/cat 5.gif" alt="Cat 5" class="cat-gif">
+  </div>
+    <script>
+  let currentIndex = 0;
+  const gifs = document.querySelectorAll('.cat-gif');
+
+  function cycleGif() {
+    gifs[currentIndex].classList.remove('active');
+    currentIndex = (currentIndex + 1) % gifs.length;
+    gifs[currentIndex].classList.add('active');
+  }
+</script>  
+</body>
+</html>

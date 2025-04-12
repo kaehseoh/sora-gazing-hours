@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloud Animation</title>
+  <style> /* Yall im hella messy dont judge or ull get bald- kay */
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .sky {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        animation: skyCycle 30s infinite linear;
+        overflow: hidden;
+    }
+
+    .cloud {
+        position: absolute;
+        animation: floatClouds linear infinite;
+        opacity: 0.8;
+        z-index: 2;
+    }
+
+    .cloud1 { top: 50px;  left: -300px; width: 400px; animation-duration: 80s; }
+    .cloud2 { top: 150px; left: -400px; width: 350px; animation-duration: 90s; }
+    .cloud3 { top: 250px; left: -500px; width: 370px; animation-duration: 85s; }
+    .cloud4 { top: 100px; left: -600px; width: 420px; animation-duration: 95s; }
+    .cloud5 { top: 300px; left: -350px; width: 390px; animation-duration: 88s; }
+    .cloud6 { top: 400px; left: -450px; width: 410px; animation-duration: 92s; }
+
+    @keyframes floatClouds {
+        from { transform: translateX(0); }
+        to   { transform: translateX(150vw); }
+    }
+
+    @keyframes skyCycle {
+        0%   { background-color: #87ceeb; }
+        33%  { background-color: #ffa07a; }
+        66%  { background-color: #191970; }
+        100% { background-color: #87ceeb; }
+    }
+
+    .grain-wrap {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+        pointer-events: none;
+    }
+
+    .grain-video {
+        width: 140%;
+        height: 140%;
+        top: -20%;
+        left: -20%;
+        position: absolute;
+        object-fit: cover;
+        opacity: 0.12;
+        mix-blend-mode: soft-light;
+    }
+
+    
+    .player {
+        background: url("music player/Amp bg.jpg") no-repeat center;
+        background-size: cover;
+        width: 736px;
+        height: 309px;
+        position: absolute;
+        bottom: 10px;
+        right: 20px;
+        z-index: 5;
+    }
+
+    .btn {
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        cursor: pointer;
+    }
+
+    .prev-btn { top: 227px; left: 41px; }
+    .prev-btn:active {
+      transform: scale(0.9);
+      transition: transform 0.1s;
+  }
+    .play-btn { top: 228px; left: 95px; }
+    .play-btn:active {
+      transform: scale(0.9);
+      transition: transform 0.1s;
+  }
+    .pause-btn { top: 227px; left: 151px; }
+    .pause-btn:active {
+      transform: scale(0.9);
+      transition: transform 0.1s;
+  }
+    .next-btn { top: 227px; left: 208px; }
+    .next-btn:active {
+      transform: scale(0.9);
+      transition: transform 0.1s;
+  }
+  .credits {
+    position: absolute;
+    bottom: 56px;
+    right: 53px;
+    font-family: 'Reddit Sans', sans-serif;
+    font-size: 13px;
+    color: black;
+    background: none;
+    padding: 0;
+    text-shadow: none;
+    z-index: 10;
+  }
+  .bold {
+    font-weight: 700;
+  }
+  
+  .track-title {
+    position: absolute;
+    bottom: 230px;   
+    right: 96px;  
+    font-family: 'Press Start 2P', monospace;
+    font-size: 16px;
+    color: rgb(122, 255, 191);
+    background: none;
+    text-shadow: 1px 1px #000;
+    z-index: 10;
+    animation: colorWave 2s infinite linear;
+  }
+  @keyframes colorWave {
+    0%   { text-shadow: 0 0 0 #000; }
+    25%  { text-shadow: 0 -2px 0 #0ff; }
+    50%  { text-shadow: 0 2px 0 #00f; }
+    75%  { text-shadow: 0 -2px 0 #0ff; }
+    100% { text-shadow: 0 0 0 #000; }
+  }
+
+  .cool-person {
+    position: absolute;
+    bottom: 25px; 
+    right: 40px;
+    font-family: 'Reddit Sans', sans-serif;
+    font-size: 12px;
+    color: #111;
+    background-color: rgba(255,255,255,0.5);
+    padding: 4px 10px;
+    border-radius: 8px;
+    z-index: 10;
+    pointer-events: none;
+  }
+  .gif-container {
+    position: absolute;
+    top: 446px;   
+    left: 783px; 
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+  }
+  
+  .cat-gif {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 246px;
+    height: 113px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .cat-gif.active {
+    opacity: 1;
+    z-index: 5;
+  }
+  
+  </style>
+</head>
+<body>
+  <div class="sky">
+    <img src="cloud.png" class="cloud cloud1" />
+    <img src="cloud.png" class="cloud cloud2" />
+    <img src="cloud.png" class="cloud cloud3" />
+    <img src="cloud.png" class="cloud cloud4" />
+    <img src="cloud.png" class="cloud cloud5" />
+    <img src="cloud.png" class="cloud cloud6" />
+
+    <!-- Music Player UI inside sky -->
+    <div class="player">
+      <img src="music player/Previous Button.png" class="btn prev-btn" />
+      <img src="music player/Play button.png" class="btn play-btn" />
+      <img src="music player/Pause button.png" class="btn pause-btn" />
+      <img src="music player/Next Button.png" class="btn next-btn" />
+    </div>
+  </div>
+
+  <!-- Grain Overlay -->
+  <div class="grain-wrap">
+    <video class="grain-video" autoplay muted loop src="grain.mp4"></video>
+  </div>
+  
+</body>
+</html>
